@@ -125,11 +125,19 @@ async function checkHealth(url) {
   const maxAttempts = 3;
   const retryDelay = 5000;
   const baseUrl = url.replace(/\/+$/, "");
+  // Authorise automated checks of protected deployments.
+  const headers = {};
+
+  if (process.env.VERCEL_AUTOMATION_BYPASS_SECRET) {
+    headers["x-vercel-protection-bypass"] =
+        process.env.VERCEL_AUTOMATION_BYPASS_SECRET;
+  }
 
   for (let attempt = 1; attempt <= maxAttempts; attempt++) {
     try {
       const page = await fetch(`${baseUrl}/`, {
         cache: "no-store",
+        headers,
         signal: AbortSignal.timeout(15000),
       });
 
@@ -137,6 +145,7 @@ async function checkHealth(url) {
         `${baseUrl}${config.healthPath}?t=${Date.now()}`,
         {
           cache: "no-store",
+          headers,
           signal: AbortSignal.timeout(15000),
         }
       );

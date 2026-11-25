@@ -296,7 +296,8 @@ async function main() {
       config.productionUrl
     );
 
-    if (!result.productionHealth) {
+    //if (!result.productionHealth) {
+    if (true) {
       throw new Error("Production deployment failed health checks.");
     }
 

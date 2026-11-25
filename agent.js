@@ -72,6 +72,7 @@ function getCurrentProduction() {
     `vercel inspect "${config.productionUrl}" --token "$VERCEL_TOKEN"`
   );
 
+  log(`Vercel inspect output: ${JSON.stringify(output)}`);
   const match = output.match(/\bid\s+(dpl_[A-Za-z0-9]+)/);
 
   if (!match) {

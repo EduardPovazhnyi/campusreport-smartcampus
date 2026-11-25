@@ -69,7 +69,7 @@ function getCurrentProduction() {
   log("Identifying current production deployment...");
 
   const output = runCommand(
-    `vercel inspect "${config.productionUrl}" --token "$VERCEL_TOKEN"`
+    `vercel inspect "${config.productionUrl}" --token "$VERCEL_TOKEN" 2>&1`
   );
 
   log(`Vercel inspect output: ${JSON.stringify(output)}`);

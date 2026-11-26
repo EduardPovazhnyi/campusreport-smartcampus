@@ -1,0 +1,27 @@
+{
+  "id": "/",
+  "name": "CampusReport – SmartCampus",
+  "short_name": "CampusReport",
+  "description": "Report an issue. Improve our campus.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#191970",
+  "theme_color": "#191970",
+  "lang": "en-GB",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}

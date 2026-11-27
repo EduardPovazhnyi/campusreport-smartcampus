@@ -44,6 +44,20 @@ import {
 
 function EditableTask({ task, onSave, disabled = false }) {
   const [text, setText] = useState(task.value);
+  const [textHeight, setTextHeight] = useState(24);
+  const inputRef = useRef(null);
+  const { width } = useWindowDimensions();
+
+  // Automatically adjust the description height on Web.
+  useEffect(() => {
+    if (Platform.OS === "web" && inputRef.current) {
+      const element = inputRef.current;
+
+      element.style.height = "0px";
+      element.style.height = `${Math.max(24, element.scrollHeight)}px`;
+    }
+  }, [text, width]);
+
   // Validate the edited description before saving.
   const saveDescription = () => {
     if (disabled || !text.trim()) {
@@ -59,13 +73,27 @@ function EditableTask({ task, onSave, disabled = false }) {
 
   return (
     <TextInput
+      ref={inputRef}
       editable={!disabled}
-      style={styles.taskText}
+      style={[
+        styles.taskText,
+        Platform.OS === "web"
+          ? { overflow: "hidden", resize: "none" }
+          : { height: textHeight },
+      ]}
       value={text}
       onChangeText={setText}
       onBlur={saveDescription}
       onSubmitEditing={saveDescription}
       multiline={true}
+      onContentSizeChange={(event) => {
+        if (Platform.OS !== "web") {
+          setTextHeight(
+            Math.max(24, event.nativeEvent.contentSize.height)
+          );
+        }
+      }}
+      scrollEnabled={false}
       textAlignVertical="top"
     />
   );
@@ -1954,7 +1982,8 @@ const styles = StyleSheet.create({
   taskText: {
     color: "black",
     fontSize: 18,
-    flex: 1,
+    width: "100%",
+    padding: 0,
   },
   taskContent: {
     flex: 1,

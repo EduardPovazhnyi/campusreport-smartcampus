@@ -3,7 +3,7 @@
 ![React Native](https://img.shields.io/badge/React%20Native-0.81.5-61DAFB)
 ![Expo](https://img.shields.io/badge/Expo-SDK%2054-black)
 ![PWA](https://img.shields.io/badge/PWA-Enabled-5A0FC8)
-![Offline Support](https://img.shields.io/badge/Offline-Supported-22C55E)
+![Offline Support](https://img.shields.io/badge/Offline-Supported-brightgreen)
 ![Deployment](https://img.shields.io/badge/Deployment-Vercel-black)
 ![CI/CD](https://github.com/EduardPovazhnyi/campusreport-smartcampus/actions/workflows/deployment-agent.yml/badge.svg)
 
